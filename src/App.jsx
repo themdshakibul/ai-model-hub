@@ -5,6 +5,7 @@ import AiModal from "./Components/Pages/AiModal";
 import Banner from "./Components/Pages/Banner";
 import Card from "./Components/Pages/Card";
 import BtnTogol from "./Components/ui/BtnTogol";
+import { ToastContainer } from "react-toastify";
 
 const CardModal = async () => {
   const res = await fetch("/models.json");
@@ -16,15 +17,19 @@ function App() {
   const [activeTab, setActiveTab] = useState("modal");
 
   const [cards, setCards] = useState([]);
-  console.log(cards);
 
   return (
     <>
       <div>
+        <ToastContainer />
         <NavBar />
         <Banner />
 
-        <BtnTogol setActiveTab={setActiveTab} cards={cards} />
+        <BtnTogol
+          setActiveTab={setActiveTab}
+          activeTab={activeTab}
+          cards={cards}
+        />
 
         {activeTab === "modal" ? (
           <AiModal CardPromis={CardPromis} cards={cards} setCards={setCards} />

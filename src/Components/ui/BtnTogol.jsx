@@ -1,26 +1,22 @@
 import React from "react";
 
-const BtnTogol = ({ setActiveTab, cards }) => {
+const BtnTogol = ({ activeTab, setActiveTab, cards }) => {
   return (
     <>
-      <div className="py-10">
-        <div className="tabs tabs-box justify-center bg-transparent">
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className="tab px-10 rounded-full text-xl font-bold"
-            aria-label="Modal"
-            defaultChecked
-            onClick={() => setActiveTab("modal")}
-          />
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className="tab px-10 rounded-full text-xl font-bold"
-            aria-label={`Cards (${cards.length})`}
-            onClick={() => setActiveTab("card")}
-          />
-        </div>
+      <div className="container mx-auto px-2 flex items-center justify-center mb-10">
+        <button
+          onClick={() => setActiveTab("modal")}
+          className={`btn text-xl  py-6 ${activeTab === "modal" ? "bg-blue-500 text-white" : "btn "} rounded-r-none rounded-l-xl`}
+        >
+          Modal
+        </button>
+
+        <button
+          onClick={() => setActiveTab("cards")}
+          className={`btn text-xl  py-6 ${activeTab === "cards" ? "bg-blue-500 text-white" : "btn "} rounded-l-none rounded-r-xl`}
+        >
+          Cards {`(${cards.length})`}
+        </button>
       </div>
     </>
   );
