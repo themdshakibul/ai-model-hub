@@ -3,11 +3,16 @@ import { toast } from "react-toastify";
 
 const ModelCard = ({ modal, cards, setCards }) => {
   const [subscribe, setSubscribed] = useState(false);
+  const isSubscribed = cards.some((item) => item.id === modal.id);
 
   const handelClickBtn = () => {
+    if (isSubscribed) {
+      toast.warn("This item is already in your cart!");
+      return;
+    }
+    toast.success("Added to cart successfully!");
     setSubscribed(true);
     setCards([...cards, modal]);
-    toast.success("Item add to cart!");
   };
 
   return (
