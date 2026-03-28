@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import ModelCard from "./ModelCard";
 
-const AiModal = ({ CardPromis }) => {
+const AiModal = ({ CardPromis, cards, setCards }) => {
   const Modals = use(CardPromis);
 
   return (
@@ -16,7 +16,7 @@ const AiModal = ({ CardPromis }) => {
 
         <div className="grid grid-cols-3 gap-10 mt-10">
           {Modals.map((modal) => (
-            <ModelCard key={modal.id} modal={modal} />
+            <ModelCard key={modal.id} modal={modal} cards={cards} setCards={setCards} />
           ))}
         </div>
       </div>

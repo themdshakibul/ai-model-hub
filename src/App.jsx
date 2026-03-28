@@ -4,6 +4,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import AiModal from "./Components/Pages/AiModal";
 import Banner from "./Components/Pages/Banner";
 import Card from "./Components/Pages/Card";
+import BtnTogol from "./Components/ui/BtnTogol";
 
 const CardModal = async () => {
   const res = await fetch("/models.json");
@@ -13,7 +14,9 @@ const CardPromis = CardModal();
 
 function App() {
   const [activeTab, setActiveTab] = useState("modal");
-  console.log(activeTab);
+
+  const [cards, setCards] = useState([]);
+  console.log(cards);
 
   return (
     <>
@@ -21,26 +24,13 @@ function App() {
         <NavBar />
         <Banner />
 
-        {/* name of each tab group should be unique */}
-        <div className="tabs tabs-box justify-center bg-transparent">
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className="tab"
-            aria-label="Modal"
-            defaultChecked
-            onClick={() => setActiveTab("modal")}
-          />
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className="tab"
-            aria-label="Card"
-            onClick={() => setActiveTab("card")}
-          />
-        </div>
+        <BtnTogol setActiveTab={setActiveTab} cards={cards} />
 
-        {activeTab === "modal" ? <AiModal CardPromis={CardPromis} /> : <Card />}
+        {activeTab === "modal" ? (
+          <AiModal CardPromis={CardPromis} cards={cards} setCards={setCards} />
+        ) : (
+          <Card cards={cards} setCards={setCards} />
+        )}
 
         <Footer />
       </div>

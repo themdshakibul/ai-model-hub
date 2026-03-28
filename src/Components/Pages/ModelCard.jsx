@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const ModelCard = ({ modal }) => {
+const ModelCard = ({ modal, cards, setCards }) => {
   const [subscribe, setSubscribed] = useState(false);
 
   const handelClickBtn = () => {
     setSubscribed(true);
-    toast.error("Item already in cart!");
+    setCards([...cards, modal]);
+    toast.success("Item add to cart!");
   };
 
   return (
@@ -21,12 +22,11 @@ const ModelCard = ({ modal }) => {
             />
           </div>
           <div className="space-y-4 p-5">
-            <h2 className="text-3xl font-bold">ChatGPT</h2>
-            <p className="text-xl font-semibold">
-              The world's most popular AI assistant by OpenAI. Versatile for
-              writing, coding, reasoning, and creative tasks.
+            <h2 className="text-3xl font-bold">{modal.title}</h2>
+            <p className="text-xl font-semibold line-clamp-2">
+              {modal.description}
             </p>
-            <p className="text-2xl font-bold">$20/month</p>
+            <p className="text-2xl font-bold">${modal.price}/month</p>
             <button
               onClick={handelClickBtn}
               className="btn bg-[#fb2c36] py-6 w-full text-xl rounded-lg text-white"
